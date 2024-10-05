@@ -69,7 +69,7 @@ type DataType = {
 };
 
 async function fetchPage(): Promise<DataType[]> {
-    const response = await fetch('https://hydro1.ddns.net/main/information_4/houly/water_today_report.php');
+    const response = await fetch('https://hydro1.ddns.net/main/information_4/houly/water_today_report.php?date=2024-10-05');
     const data = await response.json();
     console.log('water level data', data);
     return data as any;
@@ -122,7 +122,7 @@ function parseNumberData(data: string): number {
     }
     return ret;
 }
-const test = true;
+const test = false;
 export async function getData(): Promise<FloodData[]> {
     return await parsePage(
         test ? await fetchExamplePage() : await fetchPage()
