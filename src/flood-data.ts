@@ -80,7 +80,7 @@ async function fetchExamplePage(): Promise<DataType[]> {
 async function parsePage(data: DataType[]): Promise<FloodData[]> {
     return data.flatMap(row => {
        const lastDate = new Date(row.date_day_use);
-       const tzOffset = 7;
+       const tzOffset = new Date().getTimezoneOffset() * -1 / 60;
        return [
            {
                day: 3,
