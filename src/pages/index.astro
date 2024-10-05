@@ -4,7 +4,7 @@ import Card from '../components/Card.astro';
 import {getData} from '../flood-data';
 import type {Chart} from 'chart.js/auto';
 let data = await getData();
-console.log(data);
+const title = 'Ping River Water Level';
 ---
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"
         integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg=="
@@ -125,9 +125,9 @@ console.log(data);
     }
 </script>
 
-<Layout title="Ping river water level">
+<Layout title={title}>
     <main>
-        <h1>Ping river water level</h1>
+        <h1 style="width: 800px; margin-left: auto; margin-right: auto;">{title}</h1>
         <label for="offset">
             Offset P.67 by 5 hours
         </label>
@@ -158,15 +158,8 @@ console.log(data);
         font-size: 20px;
         line-height: 1.6;
     }
-
-    .astro-a {
-        position: absolute;
-        top: -32px;
-        left: 50%;
-        transform: translatex(-50%);
-        width: 220px;
-        height: auto;
-        z-index: -1;
+    .chart {
+        position: relative;
     }
 
     h1 {
