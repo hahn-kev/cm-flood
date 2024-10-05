@@ -12,9 +12,11 @@ console.log(data);
 <script define:vars={{data}} is:inline>
     document.addEventListener('DOMContentLoaded', () => {
         console.log(data);
-        const hourOffset = 6;
+        const hourOffset = 5;
         const prefixAmount = new Array(hourOffset).fill(null);
-        const suffixLabels = new Array(hourOffset).fill(null).map((value, index) => formatDate((new Date(data.at(-1).dateTime).setHours(index + 1))));
+        const lastDate = new Date(data.at(-1).dateTime);
+        const suffixLabels = new Array(hourOffset).fill(null)
+            .map((value, index) => formatDate((new Date(lastDate).setHours(lastDate.getHours() + index + 1))));
         console.log(suffixLabels);
         const levelChart = new Chart(document.getElementById('level-chart'), {
             type: 'line',
@@ -49,7 +51,10 @@ console.log(data);
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Water Level'
+                        text: 'Water Level',
+                        font: {
+                            size: 20,
+                        }
                     }
                 }
             }
@@ -87,7 +92,10 @@ console.log(data);
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Water Discharge'
+                        text: 'Water Discharge',
+                        font: {
+                            size: 20,
+                        }
                     }
                 }
             }
@@ -109,6 +117,7 @@ console.log(data);
     const format = new Intl.DateTimeFormat(undefined, {
         dateStyle: 'short',
         timeStyle: 'short',
+        timeZone: 'UTC'
     });
 
     function formatDate(date) {
@@ -116,11 +125,11 @@ console.log(data);
     }
 </script>
 
-<Layout title="Chiang Mai Flood graph">
+<Layout title="Ping river water level">
     <main>
-        <h1>Chiang Mai Flood graph</h1>
+        <h1>Ping river water level</h1>
         <label for="offset">
-            Offset P.67 by 6 hours
+            Offset P.67 by 5 hours
         </label>
         <input id="offset" type="checkbox"/>
         <div style="width: 800px;">

@@ -80,7 +80,7 @@ async function fetchExamplePage(): Promise<DataType[]> {
 async function parsePage(data: DataType[]): Promise<FloodData[]> {
     return data.flatMap(row => {
        const lastDate = new Date(row.date_day_use);
-       const tzOffset = 0;
+       const tzOffset = 7;
        return [
            {
                day: 3,
@@ -89,7 +89,7 @@ async function parsePage(data: DataType[]): Promise<FloodData[]> {
                p67Discharge: parseNumberData(row.dischg1_day1),
                p1Level: parseNumberData(row.level2_day1),
                p1Discharge: parseNumberData(row.dischg2_day1),
-               dateTime: new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate(), parseInt(row.hours_lv) - 1 + tzOffset, 0, 0),
+               dateTime: new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate(), parseInt(row.hours_lv) + tzOffset, 0, 0),
            },
            {
                day: 2,
@@ -98,7 +98,7 @@ async function parsePage(data: DataType[]): Promise<FloodData[]> {
                p67Discharge: parseNumberData(row.dischg1_day2),
                p1Level: parseNumberData(row.level2_day2),
                p1Discharge: parseNumberData(row.dischg2_day2),
-               dateTime: new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate() - 1, parseInt(row.hours_lv) - 1 + tzOffset, 0, 0),
+               dateTime: new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate() - 1, parseInt(row.hours_lv) + tzOffset, 0, 0),
            },
            {
                day: 1,
@@ -107,7 +107,7 @@ async function parsePage(data: DataType[]): Promise<FloodData[]> {
                p67Discharge: parseNumberData(row.dischg1_day3),
                p1Level: parseNumberData(row.level2_day3),
                p1Discharge: parseNumberData(row.dischg2_day3),
-               dateTime: new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate() - 2, parseInt(row.hours_lv) - 1 + tzOffset, 0, 0),
+               dateTime: new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate() - 2, parseInt(row.hours_lv) + tzOffset, 0, 0),
            },
        ] satisfies FloodData[];
     }).filter(floodData => floodData.p1Level !== -1).sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
