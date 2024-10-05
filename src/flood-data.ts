@@ -69,7 +69,7 @@ type DataType = {
 };
 
 async function fetchPage(): Promise<DataType[]> {
-    const response = await fetch('https://hydro1.ddns.net/main/information_4/houly/water_today_report.php?date=2024-10-05');
+    const response = await fetch('https://hydro1.ddns.net/main/information_4/houly/water_today_report.php');
     const data = await response.json();
     console.log('water level data', data);
     return data as any;
