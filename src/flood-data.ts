@@ -1,5 +1,4 @@
-﻿//load from file
-import {readFileSync} from 'fs';
+﻿import data from '../test.json';
 
 interface FloodData {
     hour: string;
@@ -75,8 +74,7 @@ async function fetchPage(): Promise<DataType[]> {
 }
 
 async function fetchExamplePage(): Promise<DataType[]> {
-    const result = readFileSync('test.json', 'utf8');
-    return JSON.parse(result);
+    return Promise.resolve(data);
 }
 
 async function parsePage(data: DataType[]): Promise<FloodData[]> {

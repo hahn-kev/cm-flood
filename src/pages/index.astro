@@ -6,13 +6,10 @@ import type {Chart} from 'chart.js/auto';
 let data = await getData();
 console.log(data);
 ---
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"
         integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-date-fns/3.0.0/chartjs-adapter-date-fns.min.js"
-        integrity="sha512-rwTcVAtpAmT3KnwlKHOqeV7ETOTUdf0uYbR4YGf3149X+X+Rx3tgJOOhqFVsyNl0oMgJSPqAOoFuf57WNN0RYA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script define:vars={{data}}>
+<script define:vars={{data}} is:inline>
     document.addEventListener('DOMContentLoaded', () => {
         console.log(data);
         const hourOffset = 6;
