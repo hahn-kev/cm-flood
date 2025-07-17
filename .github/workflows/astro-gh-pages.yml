@@ -58,6 +58,7 @@ jobs:
         with:
           path: ${{ env.BUILD_PATH }}/dist
       - name: Deploy to Cloudflare Pages
+        continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
